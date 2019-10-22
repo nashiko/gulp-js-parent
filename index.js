@@ -11,8 +11,13 @@ var stream;
 
 function gulpSassInheritance(options) {
   options = options || {};
-  if (typeof options.dir !== 'string') {
+
+  if (typeof options.dir !== 'string' && !Array.isArray(options.dir)) {
     throw new Error('gulp-sass-inheritance: Missing dir in options');
+  }
+
+  if (typeof options.dir === 'string') {
+    options.dir = [options.dir];
   }
 
   var files = [];
@@ -36,31 +41,32 @@ function gulpSassInheritance(options) {
     var stream = this;
     if (files.length) {
       var allPaths = _.map(files, 'path');
-      var graph = sassGraph.parseDir(options.dir, options);
       var newFiles = files;
-      _.forEach(files, function(file) {
-        if (graph.index && graph.index[file.path]) {
-          var fullpaths = recureOnImports([],graph, file.path);
+      _.forEach(options.dir, function(dir) {
+        var graph = sassGraph.parseDir(dir, options);
+        _.forEach(files, function(file) {
+          if (graph.index && graph.index[file.path]) {
+            var fullpaths = recureOnImports([],graph, file.path);
 
-          fullpaths.forEach(function (path) {
-            if (!_.includes(allPaths, path)) {
-              allPaths.push(path);
-              newFiles.push(new gutil.File({
-                cwd: file.cwd,
-                base: file.base,
-                path: path,
-                stat: fs.statSync(path),
-                contents: fs.readFileSync(path)
-              }));
+            fullpaths.forEach(function (path) {
+              if (!_.includes(allPaths, path)) {
+                allPaths.push(path);
+                newFiles.push(new gutil.File({
+                  cwd: file.cwd,
+                  base: file.base,
+                  path: path,
+                  stat: fs.statSync(path),
+                  contents: fs.readFileSync(path)
+                }));
+              }
+            });
+
+            if (options.debug) {
+              console.log('File', file.path);
+              console.log(' - importedBy', fullpaths);
             }
-          });
-
-          if (options.debug) {
-            console.log('File', file.path);
-            console.log(' - importedBy', fullpaths);
           }
-        }
-
+        });
       });
       es.readArray(files)
         .pipe(es.through(
