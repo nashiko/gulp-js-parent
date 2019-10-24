@@ -1,6 +1,6 @@
 {
-  "name": "gulp-sass-inheritance",
-  "version": "1.1.2",
+  "name": "gulp-sass-parent",
+  "version": "2.0.0",
   "description": "Rebuild only changed sass/scss files and all it's dependencies",
   "main": "index.js",
   "scripts": {
@@ -8,23 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:berstend/gulp-sass-inheritance.git"
+    "url": "git@github.com:luckyraul/gulp-sass-parent.git"
   },
   "keywords": [
     "gulpplugin",
     "sass",
-    "sass-inheritance",
     "sass-graph",
     "gulp-sass-graph",
     "sass-dependencies",
     "gulp-cached"
   ],
-  "author": "berstend & Juanfran Alcántara",
+  "author": "Nikita Tarasov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/berstend/gulp-sass-inheritance/issues"
+    "url": "https://github.com/luckyraul/gulp-sass-parent/issues"
   },
-  "homepage": "https://github.com/berstend/gulp-sass-inheritance",
+  "homepage": "https://github.com/luckyraul/gulp-sass-parent",
   "dependencies": {
     "event-stream": "4.0.1",
     "gulp-util": "^3.0.8",

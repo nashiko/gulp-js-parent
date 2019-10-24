@@ -1,32 +1,6 @@
-# gulp-sass-inheritance
-
-[![npm](https://img.shields.io/npm/v/gulp-sass-inheritance.svg)](https://www.npmjs.com/package/gulp-sass-inheritance)
-[![npm](https://img.shields.io/npm/dm/gulp-sass-inheritance.svg)](https://www.npmjs.com/package/gulp-sass-inheritance)
-![travis](https://api.travis-ci.org/berstend/gulp-sass-inheritance.svg?branch=master)
-[![Greenkeeper badge](https://badges.greenkeeper.io/berstend/gulp-sass-inheritance.svg)](https://greenkeeper.io/)
-![deps](https://david-dm.org/berstend/gulp-sass-inheritance.svg)
-
-
-> Rebuild a sass/scss file with other files that have imported this file
-
-* Based on [gulp-jade-inheritance](https://github.com/juanfran/gulp-jade-inheritance)
-* Uses [sass-graph](https://github.com/xzyfer/sass-graph) for the heavy lifting
+# gulp-sass-parent
 
 Useful when working on a larger project: Styles can be (re-)built incrementally on a per-need basis.
-
-
-## Changelog
-
-
-#### v1.1.0 (2017-05-13)
-
-* **The file initially emitted is now being passed through as well**
-* **Support for nested imports** - Thanks [@safareli](https://github.com/safareli)! Fixes [#3](https://github.com/berstend/gulp-sass-inheritance/issues/3) [#5](https://github.com/berstend/gulp-sass-inheritance/issues/5)
-* Added [tests](./test) & solid coverage
-* Updated dependencies
-
-
-###### Previous: v0.5.1 (2015-04-09)
 
 
 
@@ -34,12 +8,11 @@ Useful when working on a larger project: Styles can be (re-)built incrementally 
 
 ```bash
 # Using npm
-npm install gulp-sass-inheritance --save
+npm install gulp-sass-parent --save
 
 # Using yarn
-yarn add gulp-sass-inheritance
+yarn add gulp-sass-parent
 ```
-
 
 
 
@@ -50,7 +23,7 @@ You can use `gulp-sass-inheritance` with `gulp-changed` to only process the file
 ```js
 'use strict';
 var gulp = require('gulp');
-var sassInheritance = require('gulp-sass-inheritance');
+var sassInheritance = require('gulp-sass-parent');
 var sass = require('gulp-sass');
 var cached = require('gulp-cached');
 var gulpif = require('gulp-if');
