@@ -6,6 +6,7 @@ var fs = require('fs');
 var gutil = require('gulp-util');
 var sassGraph = require('sass-graph');
 var PLUGIN_NAME = 'gulp-sass-inheritance';
+var pathRequire = require('path');
 
 var stream;
 
@@ -53,7 +54,7 @@ function gulpSassInheritance(options) {
                 allPaths.push(path);
                 newFiles.push(new gutil.File({
                   cwd: file.cwd,
-                  base: file.base,
+                  base: pathRequire.join(file.cwd,dir),
                   path: path,
                   stat: fs.statSync(path),
                   contents: fs.readFileSync(path)
