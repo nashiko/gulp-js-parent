@@ -1,12 +1,12 @@
 'use strict';
 
+var path = require('path');
 var es = require('event-stream');
 var _ = require('lodash');
 var fs = require('fs');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 var sassGraph = require('sass-graph');
-var PLUGIN_NAME = 'gulp-sass-inheritance';
-var pathRequire = require('path');
+var PLUGIN_NAME = 'gulp-sass-parent';
 
 var stream;
 
@@ -49,15 +49,15 @@ function gulpSassInheritance(options) {
           if (graph.index && graph.index[file.path]) {
             var fullpaths = recureOnImports([],graph, file.path);
 
-            fullpaths.forEach(function (path) {
-              if (!_.includes(allPaths, path)) {
-                allPaths.push(path);
-                newFiles.push(new gutil.File({
+            fullpaths.forEach(function (fp) {
+              if (!_.includes(allPaths, fp)) {
+                allPaths.push(fp);
+                newFiles.push(new Vinyl({
                   cwd: file.cwd,
-                  base: pathRequire.join(file.cwd,dir),
-                  path: path,
-                  stat: fs.statSync(path),
-                  contents: fs.readFileSync(path)
+                  base: path.join(file.cwd, dir),
+                  path: fp,
+                  stat: fs.statSync(fp),
+                  contents: fs.readFileSync(fp)
                 }));
               }
             });
