@@ -54,7 +54,7 @@ function gulpSassInheritance(options) {
                 allPaths.push(fp);
                 newFiles.push(new Vinyl({
                   cwd: file.cwd,
-                  base: path.join(file.cwd, dir),
+                  base: path.resolve(dir),
                   path: fp,
                   stat: fs.statSync(fp),
                   contents: fs.readFileSync(fp)

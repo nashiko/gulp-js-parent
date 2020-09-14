@@ -1,6 +1,6 @@
 {
   "name": "gulp-sass-parent",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Rebuild only changed sass/scss files and all it's dependencies",
   "main": "index.js",
   "scripts": {
