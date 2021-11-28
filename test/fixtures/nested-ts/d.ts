@@ -1,3 +1,1 @@
-@charset 'UTF-8';
-
 // Illusion is needed to disguise the emptiness within.

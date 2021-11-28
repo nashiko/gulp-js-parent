@@ -5,16 +5,15 @@ var es = require('event-stream');
 var _ = require('lodash');
 var fs = require('fs');
 var Vinyl = require('vinyl');
-var sassGraph = require('sass-graph');
-var PLUGIN_NAME = 'gulp-sass-parent';
+var jsGraph = require('@nashiko/js-graph-dependency');
 
 var stream;
 
-function gulpSassInheritance(options) {
+function gulpJsParent(options) {
   options = options || {};
 
   if (typeof options.dir !== 'string' && !Array.isArray(options.dir)) {
-    throw new Error('gulp-sass-inheritance: Missing dir in options');
+    throw new Error('gulp-js-parent: Missing dir in options');
   }
 
   if (typeof options.dir === 'string') {
@@ -44,7 +43,7 @@ function gulpSassInheritance(options) {
       var allPaths = _.map(files, 'path');
       var newFiles = files;
       _.forEach(options.dir, function(dir) {
-        var graph = sassGraph.parseDir(dir, options);
+        var graph = jsGraph.parseDir(dir, options);
         _.forEach(files, function(file) {
           if (graph.index && graph.index[file.path]) {
             var fullpaths = recureOnImports([],graph, file.path);
@@ -88,4 +87,4 @@ function gulpSassInheritance(options) {
   return stream;
 }
 
-module.exports = gulpSassInheritance;
+module.exports = gulpJsParent;
