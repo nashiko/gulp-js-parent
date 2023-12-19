@@ -1,6 +1,6 @@
 {
   "name": "@nashiko/gulp-js-parent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rebuild only changed js/ts files and all it's dependencies",
   "author": "nashiko",
   "license": "MIT",

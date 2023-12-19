@@ -23,7 +23,7 @@ function gulpJsParent(options) {
   var files = [];
 
   function writeStream(currentFile) {
-    if (currentFile && currentFile.contents.length) {
+    if (currentFile && !currentFile.isDirectory() && currentFile.contents.length) {
       files.push(currentFile);
     }
   }
